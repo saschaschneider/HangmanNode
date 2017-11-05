@@ -1,14 +1,12 @@
 var inquirer = require('inquirer');
 var prompt = require('prompt');
-var letter = require("./letter.js");
 
-// var game = require("./game.js");
-var word = require("./word.js")
-var gameOptions = ["Flower", "Fruit", "Table", "Chair", "Love", "Family", "Water", "Picture", "Refrigerator", "Giraffe"];
-var computerChoice; // Computer will pick random word from gameOptions array
+var gameOptions = require("./gameword.js"); // holds the array of possible words to be guessed, aka gameword
+
+var computerChoice; // Computer picks a random word from  the gameOptions array
 var blanks = "";
 var winword = "";
-var lives = 1; // According to Wikipedia, the user has 6 lives in this game
+var lives = 6; // According to Wikipedia, the user has 6 lives in this game, this might be set to one for testing only! 
 
 // ---------------------------------------------------------------------------------------------------------------------//
 
@@ -31,9 +29,7 @@ while (j < gamewordLength) {
     j++;
 
 }
-
-function myFunction() {
-
+var main = function myFunction() {
 
     inquirer.prompt([
             // Here we create a basic text prompt, which asks the user to insert one letter
@@ -61,7 +57,7 @@ function myFunction() {
         ])
 
         .then(function(inquirerResponse) {
-
+            
             // If the inquirerResponse confirms, we displays the inquirerResponse's username and pokemon from the answers.
             var userInput = inquirerResponse.letter;
             userInput = userInput.toUpperCase();
@@ -89,17 +85,6 @@ function myFunction() {
                     console.log("\n----------------------------- Word:" + blanks +" -------------------\n");
                     }
 
-
-                    // if (blanks === winword) {
-                    //     var winner = console.log("You Won")
-                    // } else(myFunction());
-
-
-
-                    // console.log("You selected letter " + userInput);
-                    // console.log("Later, you will have to guess " + gameWord);
-                    // console.log("Here are the blanks for the word you have to guess " + blanks);
-                    // console.log("The index of your input is " + index);
                 } else if (index < 0 && lives > 0) {
                     // if index < 0, then the letter the user input does not exist in the gamword
                     lives = lives - 1; // subtracting 1 life
@@ -113,16 +98,12 @@ function myFunction() {
             } else if (lives === 0) {
                 // adding GameOver
                 console.log("\n----------------------------- GAMEOVER ----------------------------")
+                
             }
 
         }
-})
+});
     }
-myFunction()
 
 
-var you = function (
-console.log("bla bla bla")
-)
-
-you
+main();
